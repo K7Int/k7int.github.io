@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="termBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#141722"/>
+      <stop offset="100%" stop-color="#0a0c12"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.8"/>
+    </filter>
+  </defs>
+
+  <!-- Ambient background -->
+  <circle cx="300" cy="200" r="180" fill="rgba(112, 0, 255, 0.1)" filter="blur(40px)"/>
+
+  <!-- Back Terminal Window (Offset) -->
+  <rect x="110" y="50" width="420" height="260" rx="10" fill="#0c0d14" stroke="rgba(255, 255, 255, 0.08)" filter="url(#shadow)"/>
+  <rect x="110" y="50" width="420" height="32" rx="10" fill="rgba(255, 255, 255, 0.03)"/>
+  <circle cx="130" cy="66" r="4" fill="#64748b"/>
+  <circle cx="144" cy="66" r="4" fill="#64748b"/>
+  <circle cx="158" cy="66" r="4" fill="#64748b"/>
+
+  <!-- Front Terminal Window -->
+  <rect x="70" y="90" width="440" height="270" rx="12" fill="url(#termBg)" stroke="rgba(0, 240, 255, 0.3)" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="70" y="90" width="440" height="36" rx="12" fill="rgba(255, 255, 255, 0.04)" stroke-bottom="rgba(255, 255, 255, 0.08)"/>
+  <circle cx="95" cy="108" r="5" fill="#ff5f56"/>
+  <circle cx="112" cy="108" r="5" fill="#ffbd2e"/>
+  <circle cx="129" cy="108" r="5" fill="#27c93f"/>
+  <text x="290" y="113" font-family="'JetBrains Mono', monospace" font-size="12" fill="#94a3b8" text-anchor="middle">open-cli — k7i-core v2.4.0</text>
+
+  <!-- Terminal Content -->
+  <g transform="translate(95, 150)" font-family="'JetBrains Mono', monospace" font-size="13">
+    <text x="0" y="0" fill="#10b981">$ k7i init --local --privacy-first</text>
+    <text x="0" y="24" fill="#64748b">[INFO] Initializing encrypted SQLite vault at ~/.k7i/vault.db...</text>
+    <text x="0" y="48" fill="#00f0ff">[SUCCESS] Vault created. Zero cloud telemetry detected.</text>
+    <text x="0" y="72" fill="#f1f5f9">$ k7i darshana import --source=bank,email,spotify</text>
+    <text x="0" y="96" fill="#f59e0b">● Importing 14,230 local records... (100% completed in 0.42s)</text>
+    <text x="0" y="130" fill="#10b981">$ <tspan fill="#ffffff" text-decoration="underline">_</tspan></text>
+  </g>
+</svg>
