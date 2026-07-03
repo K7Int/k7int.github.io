@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asteria — Your Life, As A Filesystem</title>
+  <meta name="description" content="K7I Asteria is a local-first, retro desktop application that treats your life like a filesystem.">
+  <meta name="author" content="K7I">
+  <meta name="theme-color" content="#b8b0a4">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pixelify+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <style>
+    .download-group {
+      margin-bottom: 18px;
+    }
+    .download-group:last-child {
+      margin-bottom: 0;
+    }
+    .download-group-title {
+      font-family: var(--font-system);
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: var(--ink-faint);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid var(--line-soft);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .download-group-title .os-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+    .dl-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .dl-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 11px;
+      font-family: var(--font-system);
+      font-size: 0.74rem;
+      font-weight: 600;
+      background: var(--window-bg);
+      border: 1.5px solid var(--chrome-border);
+      border-radius: 5px;
+      color: var(--ink);
+      transition: background var(--t-fast), color var(--t-fast), border-color var(--t-fast), transform var(--t-fast);
+      white-space: nowrap;
+    }
+    .dl-btn:hover {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+    .dl-btn:active {
+      transform: translateY(0);
+    }
+    .dl-btn .ext {
+      opacity: 0.5;
+      font-weight: 400;
+    }
+    .dl-btn:hover .ext {
+      opacity: 0.7;
+    }
+    .ast-sig {
+      font-family: var(--font-system);
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      line-height: 1.65;
+    }
+    .ast-sig strong {
+      color: var(--ink);
+    }
+    .tech-stack {
+      width: 100%;
+      font-size: 0.85rem;
+      border-collapse: collapse;
+    }
+    .tech-stack td {
+      padding: 5px 8px;
+      border-bottom: 1px solid var(--line-soft);
+    }
+    .tech-stack td:first-child {
+      font-family: var(--font-system);
+      font-weight: 600;
+      color: var(--ink-faint);
+      width: 100px;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .tech-stack td:last-child {
+      color: var(--ink-soft);
+    }
+    .arch-tree {
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      color: var(--ink-soft);
+      line-height: 1.5;
+      white-space: pre;
+      overflow-x: auto;
+      background: var(--window-inset);
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 5px;
+    }
+    .hero-tagline {
+      font-family: var(--font-system);
+      font-size: 1.1rem;
+      color: var(--ink);
+      margin: 14px 0 10px;
+      line-height: 1.35;
+    }
+    .hero-tagline .accent {
+      color: var(--blue);
+      font-weight: 600;
+    }
+    .spec-label {
+      font-family: var(--font-system);
+      font-size: 0.72rem;
+      color: var(--ink-faint);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-top: 16px;
+      margin-bottom: 6px;
+    }
+    .spec-line {
+      font-family: var(--font-system);
+      font-size: 0.8rem;
+      color: var(--ink-soft);
+      padding: 2px 0;
+    }
+    .spec-line strong {
+      color: var(--ink);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Menu Bar -->
+  <header class="menubar" id="navbar">
+    <div class="menubar-inner">
+      <div class="menubar-left">
+        <a href="index.html" class="apple-logo" aria-label="K7I Home">K</a>
+        <div class="menu-group">
+          <button class="menu-item has-dropdown" type="button">File</button>
+          <div class="dropdown">
+            <a href="index.html#works" class="dropdown-item">Open Work</a>
+            <a href="asteria.html" class="dropdown-item">Open Asteria</a>
+            <div class="dropdown-divider"></div>
+            <a href="index.html" class="dropdown-item">Close Window</a>
+          </div>
+        </div>
+        <div class="menu-group">
+          <button class="menu-item has-dropdown" type="button">Edit</button>
+          <div class="dropdown">
+            <button class="dropdown-item" type="button" onclick="document.execCommand('selectAll')">Select All</button>
+            <span class="dropdown-item disabled">Copy</span>
+            <span class="dropdown-item disabled">Paste</span>
+          </div>
+        </div>
+        <a href="#about" class="menu-item">About</a>
+        <a href="#downloads" class="menu-item">Download</a>
+        <a href="#readme" class="menu-item">ReadMe</a>
+        <a href="index.html#contact" class="menu-item">Contact</a>
+      </div>
+      <div class="menubar-right">
+        <a href="https://github.com/K7Int/k7iasteria" target="_blank" rel="noopener noreferrer" class="menu-item">Source</a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Desktop -->
+  <main class="desktop">
+    <div class="container">
+
+      <!-- Top row: About + Downloads -->
+      <div class="desktop-grid section" style="padding-top:0;">
+
+        <!-- About Asteria -->
+        <div class="window reveal" id="about">
+          <div class="titlebar">
+            <span class="close-box"></span>
+            <span class="titlebar-title">About Asteria</span>
+          </div>
+          <div class="window-body">
+            <div class="eyebrow" style="font-family:var(--font-system);font-size:0.74rem;color:var(--ink-faint);margin-bottom:6px;">K7I · v1.0.0</div>
+            <h1 style="font-size:2.4rem;margin-bottom:4px;">Asteria</h1>
+            <div class="hero-tagline">
+              "This is not an app.<br>This is my <span class="accent">personal computer</span> for my life."
+            </div>
+            <p style="font-size:0.92rem;color:var(--ink-soft);line-height:1.6;margin-bottom:0;">
+              A local-first, retro desktop application that treats your life like a filesystem.
+              Beige windows, a pixel desktop, draggable panels — everything is a memory file.
+            </p>
+            <div class="spec-label">System Requirements</div>
+            <div class="spec-line"><strong>OS:</strong> Linux · macOS · Windows</div>
+            <div class="spec-line"><strong>License:</strong> MIT — free, open, yours.</div>
+            <div class="spec-line"><strong>Storage:</strong> SQLite · WAL mode · portable</div>
+            <div class="spec-line"><strong>Privacy:</strong> Zero telemetry. No cloud. No accounts.</div>
+          </div>
+        </div>
+
+        <!-- Downloads -->
+        <div class="window reveal reveal-delay-1" id="downloads">
+          <div class="titlebar">
+            <span class="close-box"></span>
+            <span class="titlebar-title">Downloads</span>
+          </div>
+          <div class="window-body inset" style="padding:20px 20px 22px;">
+
+            <!-- Linux -->
+            <div class="download-group">
+              <div class="download-group-title"><span class="os-dot" style="background:#e8a020;"></span> Linux</div>
+              <div class="dl-row">
+                <a href="https://github.com/K7Int/k7iasteria/releases/download/untagged-e77d40d8f5d6db18af0c/K7I.Asteria_1.0.0_amd64.deb" class="dl-btn" download>.deb <span class="ext">Debian / Ubuntu</span></a>
+                <a href="https://github.com/K7Int/k7iasteria/releases/download/untagged-e77d40d8f5d6db18af0c/K7I.Asteria-1.0.0-1.x86_64.rpm" class="dl-btn" download>.rpm <span class="ext">Fedora / RHEL</span></a>
+                <a href="https://github.com/K7Int/k7iasteria/releases/download/untagged-e77d40d8f5d6db18af0c/K7I.Asteria_1.0.0_amd64.AppImage" class="dl-btn" download>.AppImage <span class="ext">Universal</span></a>
+              </div>
+            </div>
+
+            <!-- macOS -->
+            <div class="download-group">
+              <div class="download-group-title"><span class="os-dot" style="background:#888;"></span> macOS</div>
+              <div class="dl-row" style="margin-bottom:4px;">
+                <a href="https://github.com/K7Int/k7iasteria/releases/download/untagged-e77d40d8f5d6db18af0c/K7I.Asteria_1.0.0_aarch64.dmg" class="dl-btn" download>.dmg <span class="ext">Apple Silicon</span></a>
+                <a href="https://github.com/K7Int/k7iasteria/releases/download/untagged-e77d40d8f5d6db18af0c/K7I.Asteria_1.0.0_x64.dmg" class="dl-btn" download>.dmg <span class="ext">Intel</span></a>
+              </div>
+              <div class="dl-row">
+                <a href="https://github.com/K7Int/k7iasteria/releases/download/untagged-e77d40d8f5d6db18af0c/K7I.Asteria_aarch64.app.tar.gz" class="dl-btn" download>.tar.gz <span class="ext">Apple Silicon</span></a>
+                <a href="https://github.com/K7Int/k7iasteria/releases/download/untagged-e77d40d8f5d6db18af0c/K7I.Asteria_x64.app.tar.gz" class="dl-btn" download>.tar.gz <span class="ext">Intel</span></a>
+              </div>
+            </div>
+
+            <!-- Windows -->
+            <div class="download-group">
+              <div class="download-group-title"><span class="os-dot" style="background:#2b8ae2;"></span> Windows</div>
+              <div class="dl-row">
+                <a href="https://github.com/K7Int/k7iasteria/releases/download/untagged-e77d40d8f5d6db18af0c/K7I.Asteria_1.0.0_x64-setup.exe" class="dl-btn" download>.exe <span class="ext">Installer</span></a>
+                <a href="https://github.com/K7Int/k7iasteria/releases/download/untagged-e77d40d8f5d6db18af0c/K7I.Asteria_1.0.0_x64_en-US.msi" class="dl-btn" download>.msi <span class="ext">Package</span></a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ReadMe -->
+      <section class="section" id="readme" style="padding-top:0;">
+        <div class="window reveal">
+          <div class="titlebar">
+            <span class="close-box"></span>
+            <span class="titlebar-title">README.txt</span>
+          </div>
+          <div class="window-body">
+
+            <blockquote class="philosophy-quote" style="margin-bottom:22px;">
+              In a world of clouds,<br>
+              <span class="strike">be a filesystem.</span><br>
+              <span class="accent">Your computer. Your data. Your life.</span>
+            </blockquote>
+
+            <p style="font-size:0.92rem;color:var(--ink-soft);line-height:1.6;margin-bottom:20px;">
+              <strong style="color:var(--ink);">K7I Asteria</strong> turns your life into a filesystem.
+              Books become files. Movies become files. Trips become folders. Photos become assets.
+              Journals become documents. Workouts become logs. Places become nodes.
+              Every memory is a file — linked, searchable, yours.
+            </p>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+              <div>
+                <div class="spec-label" style="margin-top:0;">Tech Stack</div>
+                <table class="tech-stack">
+                  <tr><td>Desktop</td><td>Tauri v2 (Rust + WebView)</td></tr>
+                  <tr><td>Backend</td><td>Rust, SQLx, SQLite (WAL)</td></tr>
+                  <tr><td>Frontend</td><td>React 18, TypeScript, Vite</td></tr>
+                  <tr><td>UI</td><td>Tailwind CSS, Framer Motion, Zustand</td></tr>
+                  <tr><td>Window System</td><td>Custom retro OS emulation</td></tr>
+                  <tr><td>AI</td><td>Ollama / OpenAI / Anthropic / local</td></tr>
+                </table>
+              </div>
+              <div>
+                <div class="spec-label" style="margin-top:0;">Architecture</div>
+                <div class="arch-tree">src-tauri/
+├── domain/       aggregates
+├── storage/      SQLite + migrations
+├── services/     use-cases (search, stats)
+├── importers/    plugin-based (CSV, JSON…)
+├── ai/           provider-agnostic hub
+├── commands/     Tauri command surface
+└── lib.rs        DI + app bootstrap
+
+src/
+├── stores/       Zustand (window mgr, store)
+├── desktop/      WindowFrame, Menubar, Tray
+├── windows/      Memory, Folder, Timeline…
+├── memory/ipc.ts typed invoke wrappers
+├── types.ts      shared types
+└── App.tsx</div>
+              </div>
+            </div>
+
+            <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--line-soft);display:flex;gap:14px;flex-wrap:wrap;">
+              <a href="https://github.com/K7Int/k7iasteria" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size:0.8rem;">
+                View Source on GitHub
+              </a>
+              <a href="https://github.com/K7Int/k7iasteria#quick-start" target="_blank" rel="noopener noreferrer" class="btn" style="font-size:0.8rem;">
+                Quick Start Guide
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer" id="contact">
+        <div class="container">
+          <div class="footer-strip reveal">
+            <span>K7I — Software for Humans</span>
+            <div class="right">
+              <a href="https://github.com/K7Int" target="_blank" rel="noopener noreferrer" class="footer-link">
+                <span data-icon="github"></span><span>GitHub</span>
+              </a>
+              <a href="mailto:kareemharimech7@gmail.com" class="footer-link">
+                <span data-icon="mail"></span><span>Mail</span>
+              </a>
+              <span>&copy; 2026 K7I</span>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+  </main>
+
+  <script src="assets/icons/icons.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

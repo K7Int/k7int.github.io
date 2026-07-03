@@ -1,13 +1,16 @@
-# K7I — Software Engineered for Humans
+# K7I — System 7
 
-Portfolio and product showcase website for K7I, a privacy-first, local-first software company.
+Portfolio and product showcase for K7I, a privacy-first, local-first software
+studio. The site is styled like a **classic Macintosh OS 7 desktop**: beige
+platinum windows, a menu bar, pixel-style type, folder icons, and dialog boxes.
+Set in *Pixelify Sans* and *Inter*.
 
 ## Tech Stack
 
 - HTML5
-- Modern CSS (multi-file)
-- Vanilla JavaScript (ES6+, modular)
-- No frameworks, no build tools, no dependencies
+- Hand-written CSS (multi-file, no preprocessor)
+- Vanilla JavaScript (ES6+, zero dependencies)
+- No frameworks, no build tools
 
 ## Structure
 
@@ -17,18 +20,14 @@ Portfolio and product showcase website for K7I, a privacy-first, local-first sof
 ├── css/
 │   ├── reset.css
 │   ├── variables.css
+│   ├── animations.css
 │   ├── main.css
-│   ├── components.css
-│   └── animations.css
+│   └── components.css
 ├── js/
-│   ├── main.js
-│   └── particles.js
+│   └── main.js          # menu bar, scroll reveal, mobile menu
 ├── assets/
-│   ├── images/
-│   │   ├── hero-art.svg
-│   │   └── darshana-dashboard.svg
 │   └── icons/
-│       └── icons.js
+│       └── icons.js     # zero-dep SVG icon registry
 └── README.md
 ```
 
@@ -36,7 +35,7 @@ Portfolio and product showcase website for K7I, a privacy-first, local-first sof
 
 Everything is under active development.
 
-- **K7I Darshana** — Currently building (a local-first personal data aggregator that keeps everything on your computer with zero telemetry).
+- **K7I Asteria** — a folder in the Work window, status WIP. Details not yet shared.
 
 ## Contact
 

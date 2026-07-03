@@ -1,23 +1,23 @@
 /**
- * K7I Core — Navigation, scroll reveal, spotlight tracking, mobile menu.
+ * K7I System 7 — menu bar, dropdowns, mobile menu, scroll reveal, active item.
  */
 
 class K7IApp {
   constructor() {
     this.navbar = document.getElementById('navbar');
     this.mobileBtn = document.getElementById('mobileMenuBtn');
-    this.navLinks = document.getElementById('navLinks');
+    this.menubarLeft = document.querySelector('.menubar-left');
     this.revealElements = document.querySelectorAll('.reveal');
     this.init();
   }
 
   init() {
     this.injectIcons();
-    this.setupStickyNav();
+    this.setupStickyMenu();
     this.setupScrollObserver();
-    this.setupSpotlightCards();
+    this.setupDropdowns();
     this.setupMobileMenu();
-    this.setupActiveNav();
+    this.setupActiveMenu();
   }
 
   injectIcons() {
@@ -29,14 +29,10 @@ class K7IApp {
     });
   }
 
-  setupStickyNav() {
+  setupStickyMenu() {
     if (!this.navbar) return;
     const onScroll = () => {
-      if (window.scrollY > 10) {
-        this.navbar.classList.add('scrolled');
-      } else {
-        this.navbar.classList.remove('scrolled');
-      }
+      this.navbar.classList.toggle('scrolled', window.scrollY > 10);
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
@@ -49,42 +45,66 @@ class K7IApp {
     }
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('active');
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     this.revealElements.forEach(el => observer.observe(el));
   }
 
-  setupSpotlightCards() {
-    document.querySelectorAll('.product-card, .about-card, .darshana-card').forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        card.style.setProperty('--mouse-x', (e.clientX - rect.left) + 'px');
-        card.style.setProperty('--mouse-y', (e.clientY - rect.top) + 'px');
+  setupDropdowns() {
+    document.querySelectorAll('.menu-group').forEach(group => {
+      const btn = group.querySelector('.has-dropdown');
+      const dropdown = group.querySelector('.dropdown');
+      if (!btn || !dropdown) return;
+
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = dropdown.classList.contains('open');
+        this.closeAllDropdowns();
+        if (!isOpen) dropdown.classList.add('open');
+      });
+    });
+
+    document.addEventListener('click', () => this.closeAllDropdowns());
+  }
+
+  closeAllDropdowns() {
+    document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
+  }
+
+  setupMobileMenu() {
+    if (!this.mobileBtn || !this.menubarLeft) return;
+    this.mobileBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.menubarLeft.classList.toggle('open');
+      this.mobileBtn.classList.toggle('open');
+      this.closeAllDropdowns();
+    });
+
+    this.menubarLeft.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        this.menubarLeft.classList.remove('open');
+        this.mobileBtn.classList.remove('open');
       });
     });
   }
 
-  setupMobileMenu() {
-    if (!this.mobileBtn || !this.navLinks) return;
-    this.mobileBtn.addEventListener('click', () => {
-      this.navLinks.classList.toggle('open');
-    });
-    this.navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => this.navLinks.classList.remove('open'));
-    });
-  }
-
-  setupActiveNav() {
+  setupActiveMenu() {
     const sections = document.querySelectorAll('section[id], footer[id]');
-    const items = document.querySelectorAll('.nav-link');
+    const items = document.querySelectorAll('.menu-item[href^="#"]');
+    if (!sections.length || !items.length) return;
+
     window.addEventListener('scroll', () => {
       let current = '';
       sections.forEach(s => {
         if (window.scrollY > s.offsetTop - 200) current = s.getAttribute('id');
       });
       items.forEach(item => {
-        item.classList.toggle('active', item.getAttribute('href') === '#' + current);
+        const href = item.getAttribute('href');
+        item.classList.toggle('active', href === '#' + current);
       });
     }, { passive: true });
   }

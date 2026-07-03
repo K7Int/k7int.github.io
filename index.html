@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>K7I — Software Engineered for Humans</title>
-  <meta name="description" content="K7I builds privacy-first, local-first, and developer-centric software. Zero telemetry. Built to last on your computer.">
+  <title>K7I — Software for Humans</title>
+  <meta name="description" content="K7I builds privacy-first, local-first, artistic and lightweight software. Zero telemetry. Built to last on your own computer.">
   <meta name="author" content="K7I">
-  <meta name="theme-color" content="#050507">
+  <meta name="theme-color" content="#b8b0a4">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pixelify+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/animations.css">
@@ -18,234 +18,172 @@
 </head>
 <body>
 
-  <!-- Sticky Navigation -->
-  <header class="navbar" id="navbar">
-    <div class="nav-container">
-      <a href="#home" class="nav-logo">
-        <div class="logo-symbol">K</div>
-        <span>K7I</span>
-      </a>
-      <nav class="nav-links" id="navLinks">
-        <a href="#home" class="nav-link">Home</a>
-        <a href="#wip" class="nav-link">Work In Progress</a>
-        <a href="#philosophy" class="nav-link">Philosophy</a>
-        <a href="#about" class="nav-link">About</a>
-        <a href="#contact" class="nav-link">Contact</a>
-      </nav>
-      <div class="nav-actions">
-        <a href="https://github.com/K7Int" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
-          <span data-icon="github"></span>
-          <span>GitHub</span>
-        </a>
-        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Navigation Menu">
-          <span></span>
-          <span></span>
-          <span></span>
+  <!-- Menu Bar -->
+  <header class="menubar" id="navbar">
+    <div class="menubar-inner">
+      <div class="menubar-left">
+        <a href="#home" class="apple-logo" aria-label="K7I Home">K</a>
+        <div class="menu-group">
+          <button class="menu-item has-dropdown" type="button">File</button>
+          <div class="dropdown">
+            <a href="#works" class="dropdown-item">Open Work</a>
+            <a href="asteria.html" class="dropdown-item">Open Asteria</a>
+            <div class="dropdown-divider"></div>
+            <a href="#home" class="dropdown-item">Close Window</a>
+          </div>
+        </div>
+        <div class="menu-group">
+          <button class="menu-item has-dropdown" type="button">Edit</button>
+          <div class="dropdown">
+            <button class="dropdown-item" type="button" onclick="document.execCommand('selectAll')">Select All</button>
+            <span class="dropdown-item disabled">Copy</span>
+            <span class="dropdown-item disabled">Paste</span>
+          </div>
+        </div>
+        <a href="#works" class="menu-item">Work</a>
+        <a href="#about" class="menu-item">About</a>
+        <a href="#contact" class="menu-item">Contact</a>
+      </div>
+      <div class="menubar-right">
+        <a href="https://github.com/K7Int" target="_blank" rel="noopener noreferrer" class="menu-item">GitHub</a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Menu">
+          <span></span><span></span><span></span>
         </button>
       </div>
     </div>
   </header>
 
-  <main>
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-      <div class="hero-glow-bg"></div>
-      <div class="hero-canvas-wrap">
-        <canvas id="heroCanvas"></canvas>
-      </div>
-      <div class="container hero-content">
-        <div class="reveal">
-          <div class="hero-badge">
-            <span class="badge-dot"></span>
-            <span>Building in public — everything is open source</span>
+  <!-- Desktop -->
+  <main class="desktop">
+    <div class="container">
+
+      <!-- Top row: About window + Work folder -->
+      <div class="desktop-grid section" style="padding-top:0;">
+
+        <!-- About This Studio -->
+        <div class="window hero-window reveal" id="home">
+          <div class="titlebar">
+            <span class="close-box"></span>
+            <span class="titlebar-title">About This Studio</span>
           </div>
-          <h1 class="hero-title">
-            K7I
-            <span class="brand-highlight">Software engineered for humans.</span>
-          </h1>
-          <p class="hero-subtitle">
-            Privacy-first. Local-first. Built to last.
-          </p>
-          <div class="hero-pillars">
-            <div class="pillar-chip">Privacy-first</div>
-            <div class="pillar-chip">Local-first</div>
-            <div class="pillar-chip">Zero telemetry</div>
-          </div>
-          <div class="hero-actions">
-            <a href="#wip" class="btn btn-primary">Work in progress</a>
-            <a href="#philosophy" class="btn btn-ghost">Read philosophy</a>
+          <div class="window-body">
+            <div class="eyebrow">Portfolio · MMXXVI</div>
+            <h1 class="hero-title">K7I</h1>
+            <p class="hero-subtitle">Software engineered for humans.</p>
+            <p class="hero-manifesto">
+              Lightweight, artistic tools that run on your own computer. No
+              cloud lock-in, no telemetry, no noise — just software made to be
+              used.
+            </p>
+            <div class="hero-actions">
+              <a href="#works" class="btn btn-primary">Open Work</a>
+              <a href="#philosophy" class="btn">Read ReadMe</a>
+            </div>
           </div>
         </div>
-        <div class="reveal reveal-delay-2" style="margin-top: 72px; position: relative;">
-          <div style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: var(--radius-xl); overflow: hidden; padding: 24px;">
-            <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 16px; border-bottom: 1px solid var(--border-subtle); margin-bottom: 20px;">
-              <div style="display: flex; gap: 8px;">
-                <span style="width: 12px; height: 12px; border-radius: 50%; background: #ff5f56; display: inline-block;"></span>
-                <span style="width: 12px; height: 12px; border-radius: 50%; background: #ffbd2e; display: inline-block;"></span>
-                <span style="width: 12px; height: 12px; border-radius: 50%; background: #27c93f; display: inline-block;"></span>
+
+        <!-- Work folder -->
+        <div class="window reveal reveal-delay-1" id="works">
+          <div class="titlebar">
+            <span class="close-box"></span>
+            <span class="titlebar-title">Work</span>
+          </div>
+          <div class="window-body inset">
+            <div class="file-grid">
+              <!-- Asteria folder -->
+              <a href="asteria.html" class="file-icon">
+                <div class="icon"></div>
+                <span class="label">Asteria</span>
+              </a>
+              <!-- Empty slots -->
+              <article class="file-icon empty">
+                <div class="icon"></div>
+                <span class="label">Empty</span>
+              </article>
+              <article class="file-icon empty">
+                <div class="icon"></div>
+                <span class="label">Empty</span>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ReadMe — Philosophy -->
+      <section class="section philosophy" id="philosophy">
+        <div class="container">
+          <div class="window reveal">
+            <div class="titlebar">
+              <span class="close-box"></span>
+              <span class="titlebar-title">ReadMe.txt</span>
+            </div>
+            <div class="window-body">
+              <blockquote class="philosophy-quote">
+                Software should belong to its users —
+                <span class="strike">not the cloud,</span>
+                <span class="strike">not subscriptions,</span>
+                <span class="strike">not advertisers.</span><br>
+                Your computer. Your data.
+                <span class="accent">Your rules.</span>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About dialog -->
+      <section class="section" id="about" style="padding-top:0;">
+        <div class="container">
+          <div class="window reveal">
+            <div class="titlebar">
+              <span class="close-box"></span>
+              <span class="titlebar-title">System Information</span>
+            </div>
+            <div class="window-body">
+              <div class="about-grid">
+                <div class="about-item">
+                  <div class="label">Spec 01</div>
+                  <div class="title">Privacy-first</div>
+                  <div class="desc">Your data stays on your machine. No accounts, no tracking, no cloud dependency.</div>
+                </div>
+                <div class="about-item">
+                  <div class="label">Spec 02</div>
+                  <div class="title">Open &amp; portable</div>
+                  <div class="desc">Plain SQLite files and open schemas. Query, back up, and move your data anywhere.</div>
+                </div>
+                <div class="about-item">
+                  <div class="label">Spec 03</div>
+                  <div class="title">Made by hand</div>
+                  <div class="desc">Clean interfaces, small footprint, and a sense of craft. Built to be useful.</div>
+                </div>
               </div>
-              <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-tertiary);">k7i-core-architecture</div>
-            </div>
-            <img src="assets/images/hero-art.svg" alt="K7I local-first architecture" style="width: 100%; max-height: 480px; object-fit: contain; border-radius: var(--radius-md);">
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Work In Progress: K7I Darshana -->
-    <section class="darshana-showcase" id="wip">
-      <div class="container">
-        <div class="darshana-card reveal">
-          <div class="card-spotlight"></div>
-          <div class="darshana-header" style="flex-direction: column; align-items: flex-start; gap: 16px;">
-            <span class="status-badge badge-wip">Currently building</span>
-            <h2 style="font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -0.04em;">
-              K7I Darshana
-            </h2>
-            <p class="darshana-subtitle">
-              A local-first personal data aggregator that helps people understand their digital life while keeping everything on their own computer. We just started coding it.
-            </p>
-          </div>
-
-          <!-- Illustration -->
-          <div style="margin: 32px 0; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border-medium); background: #07080c;">
-            <img src="assets/images/darshana-dashboard.svg" alt="K7I Darshana concept" style="width: 100%; height: auto; display: block;">
-          </div>
-
-          <!-- Planned features -->
-          <div style="margin-top: 40px;">
-            <div style="font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--text-tertiary); margin-bottom: 20px;">
-              Planned features
-            </div>
-            <div class="darshana-features-grid">
-              <div class="d-feature-chip">Bank imports</div>
-              <div class="d-feature-chip">Email</div>
-              <div class="d-feature-chip">Spotify</div>
-              <div class="d-feature-chip">Strava</div>
-              <div class="d-feature-chip">Calendar</div>
-              <div class="d-feature-chip">File indexing</div>
-              <div class="d-feature-chip">OCR</div>
-              <div class="d-feature-chip">Unified timeline</div>
-              <div class="d-feature-chip">AI insights</div>
-              <div class="d-feature-chip">Global search</div>
-              <div class="d-feature-chip">SQLite</div>
-              <div class="d-feature-chip">Offline-first</div>
-              <div class="d-feature-chip" style="background: rgba(16, 185, 129, 0.08); border-color: rgba(16, 185, 129, 0.25); color: var(--accent-emerald);">Zero telemetry</div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Philosophy Section -->
-    <section class="philosophy" id="philosophy">
-      <div class="philosophy-grid-bg"></div>
-      <div class="container philosophy-content reveal">
-        <div class="section-label">Philosophy</div>
-        <blockquote class="philosophy-quote">
-          <span class="highlight-white">Software should belong to its users.</span><br><br>
-          <span class="highlight-strike">Not the cloud.</span><br>
-          <span class="highlight-strike">Not subscriptions.</span><br>
-          <span class="highlight-strike">Not advertisers.</span><br><br>
-          <span class="highlight-cyan">Your computer.</span><br>
-          <span class="highlight-purple">Your data.</span><br>
-          <span class="highlight-emerald">Your rules.</span>
-        </blockquote>
-      </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="section" id="about">
-      <div class="container">
-        <div class="section-header reveal">
-          <div class="section-label">About</div>
-          <h2 class="section-title">Why K7I exists.</h2>
-          <p class="section-subtitle">
-            We believe software went wrong when it started requiring constant internet and sending everything to the cloud. We build tools that run locally, respect your hardware, and never phone home.
-          </p>
-        </div>
-        <div class="about-grid">
-          <div class="about-card reveal reveal-delay-1">
-            <div class="card-spotlight"></div>
-            <div class="about-icon"><span data-icon="privacy"></span></div>
-            <h3 class="about-title">Privacy and local-first</h3>
-            <p class="about-desc">
-              No cloud accounts. Your encrypted data lives in SQLite files on your disk. Back up wherever you want. Own your digital footprint.
-            </p>
-          </div>
-          <div class="about-card reveal reveal-delay-2">
-            <div class="card-spotlight"></div>
-            <div class="about-icon" style="background: rgba(112, 0, 255, 0.1); color: #a855f7;">
-              <span data-icon="database"></span>
+      <!-- Footer status strip -->
+      <footer class="footer" id="contact">
+        <div class="container">
+          <div class="footer-strip reveal">
+            <span>K7I — Software for Humans</span>
+            <div class="right">
+              <a href="https://github.com/K7Int" target="_blank" rel="noopener noreferrer" class="footer-link">
+                <span data-icon="github"></span><span>GitHub</span>
+              </a>
+              <a href="mailto:kareemharimech7@gmail.com" class="footer-link">
+                <span data-icon="mail"></span><span>Mail</span>
+              </a>
+              <span>&copy; 2026 K7I</span>
             </div>
-            <h3 class="about-title">Open SQLite schemas</h3>
-            <p class="about-desc">
-              Every tool uses standard SQLite. You can query, inspect, and migrate your own data with any SQL tool. No proprietary formats.
-            </p>
-          </div>
-          <div class="about-card reveal reveal-delay-3">
-            <div class="card-spotlight"></div>
-            <div class="about-icon" style="background: rgba(16, 185, 129, 0.1); color: var(--accent-emerald);">
-              <span data-icon="terminal"></span>
-            </div>
-            <h3 class="about-title">Built by developers</h3>
-            <p class="about-desc">
-              Clean CLI interfaces, structured JSON output, Unix pipe support, and open schemas. Scriptable from day one.
-            </p>
           </div>
         </div>
-      </div>
-    </section>
+      </footer>
+
+    </div>
   </main>
 
-  <!-- Footer -->
-  <footer class="footer" id="contact">
-    <div class="container">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <a href="#home" class="nav-logo" style="margin-bottom: 16px; display: inline-flex;">
-            <div class="logo-symbol">K</div>
-            <span>K7I</span>
-          </a>
-          <p style="color: var(--text-secondary); line-height: 1.6; max-width: 340px;">
-            Software engineered for humans. Privacy-first. Local-first. Built to last.
-          </p>
-        </div>
-        <div class="footer-col">
-          <h4>Building Now</h4>
-          <div class="footer-links">
-            <a href="#wip" class="footer-link">K7I Darshana</a>
-          </div>
-        </div>
-        <div class="footer-col">
-          <h4>Company</h4>
-          <div class="footer-links">
-            <a href="#philosophy" class="footer-link">Philosophy</a>
-            <a href="#about" class="footer-link">About</a>
-          </div>
-        </div>
-        <div class="footer-col">
-          <h4>Connect</h4>
-          <div class="footer-links">
-            <a href="https://github.com/K7Int" target="_blank" rel="noopener noreferrer" class="footer-link">
-              <span data-icon="github"></span>
-              <span>github.com/K7Int</span>
-            </a>
-            <a href="mailto:kareemharimech7@gmail.com" class="footer-link">
-              <span data-icon="mail"></span>
-              <span>kareemharimech7@gmail.com</span>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <div>&copy; 2026 K7I. All rights reserved.</div>
-      </div>
-    </div>
-  </footer>
-
   <script src="assets/icons/icons.js"></script>
-  <script src="js/particles.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
