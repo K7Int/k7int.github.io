@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>K7I — Software for Humans</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <meta name="description" content="K7I builds privacy-first, local-first, artistic and lightweight software. Zero telemetry. Built to last on your own computer.">
   <meta name="author" content="K7I">
   <meta name="theme-color" content="#b8b0a4">
@@ -109,6 +110,72 @@
         </div>
       </div>
 
+      <!-- Middle row: Latest Release + System Monitor -->
+      <div class="desktop-grid section" style="padding-top:0;">
+
+        <!-- Latest Release -->
+        <div class="window reveal" id="release">
+          <div class="titlebar">
+            <span class="close-box"></span>
+            <span class="titlebar-title">Latest Release</span>
+          </div>
+          <div class="window-body">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+              <div style="width:42px;height:42px;background:#c5d9e8;border:1.5px solid var(--chrome-border);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:var(--font-system);font-size:0.9rem;font-weight:700;color:var(--ink);flex-shrink:0;">A</div>
+              <div>
+                <div style="font-family:var(--font-system);font-weight:600;color:var(--ink);">K7I Asteria</div>
+                <div style="font-family:var(--font-system);font-size:0.74rem;color:var(--ink-faint);">v1.0.0 — MIT License</div>
+              </div>
+            </div>
+            <p style="font-size:0.88rem;color:var(--ink-soft);line-height:1.55;margin-bottom:14px;">
+              A local-first desktop app that turns your life into a filesystem. Books, movies, trips, photos — everything is a memory file.
+            </p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;">
+              <a href="asteria.html" class="btn btn-primary btn-sm">View Details</a>
+              <a href="https://github.com/K7Int/k7iasteria/releases/download/v1.0.0/K7I.Asteria_1.0.0_amd64.deb" class="btn btn-sm" download>Download .deb</a>
+              <a href="https://github.com/K7Int/k7iasteria/releases/download/v1.0.0/K7I.Asteria_1.0.0_x64-setup.exe" class="btn btn-sm" download>Download .exe</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- System Monitor -->
+        <div class="window reveal reveal-delay-1">
+          <div class="titlebar">
+            <span class="close-box"></span>
+            <span class="titlebar-title">System Monitor</span>
+          </div>
+          <div class="window-body">
+            <div style="font-family:var(--font-system);font-size:0.8rem;">
+              <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line-soft);">
+                <span style="color:var(--ink-faint);">Projects</span>
+                <span style="color:var(--ink);font-weight:600;">2</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line-soft);">
+                <span style="color:var(--ink-faint);">Status</span>
+                <span style="color:#2d9d2d;font-weight:600;">Active</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line-soft);">
+                <span style="color:var(--ink-faint);">Platform</span>
+                <span style="color:var(--ink);font-weight:600;">Linux · macOS · Windows</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line-soft);">
+                <span style="color:var(--ink-faint);">Stack</span>
+                <span style="color:var(--ink);font-weight:600;">Rust + React</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line-soft);">
+                <span style="color:var(--ink-faint);">Privacy</span>
+                <span style="color:#2d9d2d;font-weight:600;">100% Local</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;padding:6px 0;">
+                <span style="color:var(--ink-faint);">Uptime</span>
+                <span style="color:var(--ink);font-weight:600;" id="uptime">calculating...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
       <!-- ReadMe — Philosophy -->
       <section class="section philosophy" id="philosophy">
         <div class="container">
@@ -185,5 +252,22 @@
 
   <script src="assets/icons/icons.js"></script>
   <script src="js/main.js"></script>
+  <script>
+    (function() {
+      var start = Date.now();
+      var el = document.getElementById('uptime');
+      if (!el) return;
+      function pad(n) { return n < 10 ? '0' + n : n; }
+      function tick() {
+        var diff = Math.floor((Date.now() - start) / 1000);
+        var h = Math.floor(diff / 3600);
+        var m = Math.floor((diff % 3600) / 60);
+        var s = diff % 60;
+        el.textContent = pad(h) + ':' + pad(m) + ':' + pad(s);
+        requestAnimationFrame(function() { setTimeout(tick, 1000); });
+      }
+      tick();
+    })();
+  </script>
 </body>
 </html>
