@@ -98,6 +98,96 @@
 }
 
 /* =====================================================================
+   Mobile Overrides
+   ===================================================================== */
+@media (max-width: 600px) {
+  .container {
+    padding: 0 14px;
+  }
+  .section {
+    padding: 40px 0 32px;
+  }
+  .window-body {
+    padding: 16px 16px 18px;
+  }
+  .window-body.inset {
+    padding: 16px;
+  }
+  .titlebar-title {
+    font-size: 0.76rem;
+  }
+  .desktop {
+    padding-top: calc(var(--menu-height) + 20px);
+    padding-bottom: 24px;
+  }
+  .hero-title {
+    font-size: clamp(1.8rem, 8vw, 2.6rem);
+  }
+  .hero-subtitle {
+    font-size: clamp(1rem, 3vw, 1.15rem);
+    margin: 12px 0 14px;
+  }
+  .hero-manifesto {
+    font-size: 0.88rem;
+  }
+  .about-item {
+    padding: 14px;
+  }
+  .about-item .title {
+    font-size: 1rem;
+  }
+  .about-item .desc {
+    font-size: 0.84rem;
+  }
+  .philosophy-quote {
+    font-size: clamp(1rem, 3vw, 1.15rem);
+  }
+  .footer {
+    padding: 16px 0 20px;
+  }
+  .footer-strip {
+    font-size: 0.7rem;
+    padding: 6px 12px;
+  }
+  .footer-strip .right {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .container {
+    padding: 0 10px;
+  }
+  .window-body {
+    padding: 12px 12px 14px;
+  }
+  .window-body.inset {
+    padding: 12px;
+  }
+  .section {
+    padding: 28px 0 24px;
+  }
+  .file-grid {
+    gap: 14px;
+  }
+  .file-icon {
+    padding: 8px 4px;
+  }
+  .file-icon .icon {
+    width: 40px;
+    height: 34px;
+  }
+  .file-icon .icon::before {
+    width: 14px;
+    height: 6px;
+    top: -5px;
+  }
+  .file-icon .label {
+    font-size: 0.7rem;
+  }
+}
+
+/* =====================================================================
    Desktop grid — windows sit here
    ===================================================================== */
 .desktop {

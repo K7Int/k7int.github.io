@@ -149,6 +149,50 @@
     .spec-line strong {
       color: var(--ink);
     }
+    .readme-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    @media (max-width: 600px) {
+      .dl-btn {
+        font-size: 0.7rem;
+        padding: 6px 10px;
+        flex: 1 1 auto;
+        justify-content: center;
+      }
+      .dl-btn .ext {
+        display: none;
+      }
+      .dl-row {
+        gap: 5px;
+      }
+      .download-group-title {
+        font-size: 0.7rem;
+      }
+      .hero-tagline {
+        font-size: 1rem;
+      }
+      .spec-line {
+        font-size: 0.74rem;
+      }
+      .tech-stack {
+        font-size: 0.78rem;
+      }
+      .tech-stack td:first-child {
+        width: 80px;
+        font-size: 0.66rem;
+      }
+      .readme-grid {
+        grid-template-columns: 1fr !important;
+      }
+    }
+    @media (max-width: 500px) {
+      .dl-btn {
+        font-size: 0.66rem;
+        padding: 5px 8px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -286,7 +330,7 @@
               Every memory is a file — linked, searchable, yours.
             </p>
 
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+            <div class="readme-grid">
               <div>
                 <div class="spec-label" style="margin-top:0;">Tech Stack</div>
                 <table class="tech-stack">
