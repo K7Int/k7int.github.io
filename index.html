@@ -19,6 +19,29 @@
 </head>
 <body>
 
+  <!-- Intro Cutscene -->
+  <div class="cutscene-overlay" id="cutscene">
+    <div class="cutscene-window">
+      <div class="cutscene-titlebar">
+        <span class="close-box"></span>
+        <span class="titlebar-title">Welcome</span>
+      </div>
+      <div class="cutscene-body">
+        <div class="cutscene-chat">
+          <div class="cutscene-avatar">K</div>
+          <div class="cutscene-speech" id="cutsceneSpeech">
+            <span class="name">K7I</span>
+            <span id="cutsceneText"></span>
+            <span class="cutscene-typing" id="cutsceneTyping"><span></span><span></span><span></span></span>
+          </div>
+        </div>
+        <div class="cutscene-footer">
+          <button class="cutscene-skip" id="cutsceneSkip">skip intro</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Menu Bar -->
   <header class="menubar" id="navbar">
     <div class="menubar-inner">
@@ -29,6 +52,8 @@
           <div class="dropdown">
             <a href="#works" class="dropdown-item">Open Work</a>
             <a href="asteria.html" class="dropdown-item">Open Asteria</a>
+            <a href="noctis.html" class="dropdown-item">Open Noctis</a>
+            <a href="keta.html" class="dropdown-item">Open Keta AI</a>
             <div class="dropdown-divider"></div>
             <a href="#home" class="dropdown-item">Close Window</a>
           </div>
@@ -74,7 +99,8 @@
             <p class="hero-manifesto">
               Lightweight, artistic tools that run on your own computer. No
               cloud lock-in, no telemetry, no noise — just software made to be
-              used.
+              used. We believe good tools should feel invisible: they get out
+              of your way and let you focus on what matters.
             </p>
             <div class="hero-actions">
               <a href="#works" class="btn btn-primary">Open Work</a>
@@ -90,17 +116,23 @@
             <span class="titlebar-title">Work</span>
           </div>
           <div class="window-body inset">
+            <p class="file-grid-intro">Click a project to learn more about it.</p>
             <div class="file-grid">
               <!-- Asteria folder -->
               <a href="asteria.html" class="file-icon">
                 <div class="icon"></div>
                 <span class="label">Asteria</span>
               </a>
-              <!-- Empty slots -->
-              <article class="file-icon">
+              <!-- Keta AI folder -->
+              <a href="keta.html" class="file-icon">
+                <div class="icon app"></div>
+                <span class="label">Keta AI<br><span style="color:var(--ink-faint);">WIP</span></span>
+              </a>
+              <!-- Noctis folder -->
+              <a href="noctis.html" class="file-icon">
                 <div class="icon"></div>
-                <span class="label">Noctis<br><span style="color:var(--ink-faint);">WIP</span></span>
-              </article>
+                <span class="label">Noctis</span>
+              </a>
               <article class="file-icon empty">
                 <div class="icon"></div>
                 <span class="label">Empty</span>
@@ -120,17 +152,17 @@
             <span class="titlebar-title">Latest Release</span>
           </div>
           <div class="window-body">
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
-              <div style="width:42px;height:42px;background:#c5d9e8;border:1.5px solid var(--chrome-border);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:var(--font-system);font-size:0.9rem;font-weight:700;color:var(--ink);flex-shrink:0;">A</div>
+            <div class="release-header">
+              <div class="release-icon">A</div>
               <div>
-                <div style="font-family:var(--font-system);font-weight:600;color:var(--ink);">K7I Asteria</div>
-                <div style="font-family:var(--font-system);font-size:0.74rem;color:var(--ink-faint);">v1.0.0 — MIT License</div>
+                <div class="release-name">K7I Asteria</div>
+                <div class="release-meta">v1.0.0 — MIT License</div>
               </div>
             </div>
-            <p style="font-size:0.88rem;color:var(--ink-soft);line-height:1.55;margin-bottom:14px;">
+            <p class="release-desc">
               A local-first desktop app that turns your life into a filesystem. Books, movies, trips, photos — everything is a memory file.
             </p>
-            <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <div class="release-actions">
               <a href="asteria.html" class="btn btn-primary btn-sm">View Details</a>
               <a href="https://github.com/K7Int/k7iasteria/releases/download/v1.0.0/K7I.Asteria_1.0.0_amd64.deb" class="btn btn-sm" download>Download .deb</a>
               <a href="https://github.com/K7Int/k7iasteria/releases/download/v1.0.0/K7I.Asteria_1.0.0_x64-setup.exe" class="btn btn-sm" download>Download .exe</a>
@@ -145,30 +177,30 @@
             <span class="titlebar-title">System Monitor</span>
           </div>
           <div class="window-body">
-            <div style="font-family:var(--font-system);font-size:0.8rem;">
-              <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line-soft);">
-                <span style="color:var(--ink-faint);">Projects</span>
-                <span style="color:var(--ink);font-weight:600;">2</span>
+            <div class="monitor">
+              <div class="monitor-row">
+                <span class="monitor-label">Projects</span>
+                <span class="monitor-value">3</span>
               </div>
-              <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line-soft);">
-                <span style="color:var(--ink-faint);">Status</span>
-                <span style="color:#2d9d2d;font-weight:600;">Active</span>
+              <div class="monitor-row">
+                <span class="monitor-label">Status</span>
+                <span class="monitor-value status-active">Active</span>
               </div>
-              <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line-soft);">
-                <span style="color:var(--ink-faint);">Platform</span>
-                <span style="color:var(--ink);font-weight:600;">Linux · macOS · Windows</span>
+              <div class="monitor-row">
+                <span class="monitor-label">Platform</span>
+                <span class="monitor-value">Linux · macOS · Windows</span>
               </div>
-              <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line-soft);">
-                <span style="color:var(--ink-faint);">Stack</span>
-                <span style="color:var(--ink);font-weight:600;">Rust + React</span>
+              <div class="monitor-row">
+                <span class="monitor-label">Stack</span>
+                <span class="monitor-value">Rust + React</span>
               </div>
-              <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line-soft);">
-                <span style="color:var(--ink-faint);">Privacy</span>
-                <span style="color:#2d9d2d;font-weight:600;">100% Local</span>
+              <div class="monitor-row">
+                <span class="monitor-label">Privacy</span>
+                <span class="monitor-value status-active">100% Local</span>
               </div>
-              <div style="display:flex;justify-content:space-between;padding:6px 0;">
-                <span style="color:var(--ink-faint);">Uptime</span>
-                <span style="color:var(--ink);font-weight:600;" id="uptime">calculating...</span>
+              <div class="monitor-row">
+                <span class="monitor-label">Uptime</span>
+                <span class="monitor-value" id="uptime">calculating...</span>
               </div>
             </div>
           </div>
@@ -193,6 +225,14 @@
                 Your computer. Your data.
                 <span class="accent">Your rules.</span>
               </blockquote>
+              <p class="philosophy-body">
+                We started K7I because we were tired of software that
+                disappears when a server shuts down, or changes when a
+                company pivots. Every tool we build stores your data
+                locally, works offline by default, and stays with you
+                as long as you want it. No accounts. No hidden fees.
+                Just honest software that respects your time and your machine.
+              </p>
             </div>
           </div>
         </div>
@@ -207,21 +247,24 @@
               <span class="titlebar-title">System Information</span>
             </div>
             <div class="window-body">
+              <div class="about-intro">
+                <p>Everything we build follows three core beliefs. These aren't just words — they shape every line of code we write.</p>
+              </div>
               <div class="about-grid">
                 <div class="about-item">
                   <div class="label">Spec 01</div>
                   <div class="title">Privacy-first</div>
-                  <div class="desc">Your data stays on your machine. No accounts, no tracking, no cloud dependency.</div>
+                  <div class="desc">Your data stays on your machine. No accounts, no tracking, no cloud dependency. What's yours stays yours.</div>
                 </div>
                 <div class="about-item">
                   <div class="label">Spec 02</div>
                   <div class="title">Open &amp; portable</div>
-                  <div class="desc">Plain SQLite files and open schemas. Query, back up, and move your data anywhere.</div>
+                  <div class="desc">Plain SQLite files and open schemas. Query, back up, and move your data anywhere. No vendor lock-in, ever.</div>
                 </div>
                 <div class="about-item">
                   <div class="label">Spec 03</div>
                   <div class="title">Made by hand</div>
-                  <div class="desc">Clean interfaces, small footprint, and a sense of craft. Built to be useful.</div>
+                  <div class="desc">Clean interfaces, small footprint, and a sense of craft. Every detail is intentional. Built to be useful, not flashy.</div>
                 </div>
               </div>
             </div>
@@ -250,8 +293,153 @@
     </div>
   </main>
 
+  <!-- WIP Project Modal -->
+  <div class="wip-overlay" id="wipOverlay">
+    <div class="wip-window" id="wipWindow">
+      <div class="titlebar">
+        <span class="close-box" id="wipClose"></span>
+        <span class="titlebar-title" id="wipTitlebar">Work in Progress</span>
+      </div>
+      <div class="window-body">
+        <div class="wip-header">
+          <div class="wip-badge">WIP</div>
+          <h2 class="wip-name" id="wipName"></h2>
+        </div>
+        <p class="wip-desc" id="wipDesc"></p>
+        <div class="wip-tech" id="wipTech"></div>
+        <div class="wip-footer">
+          <span class="wip-status">
+            <span class="wip-dot"></span>
+            In Development
+          </span>
+          <button class="btn btn-sm" id="wipDismiss">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="assets/icons/icons.js"></script>
   <script src="js/main.js"></script>
+  <script>
+    /* ---- WIP Modal ---- */
+    (function() {
+      var overlay = document.getElementById('wipOverlay');
+      var closeBtn = document.getElementById('wipClose');
+      var dismissBtn = document.getElementById('wipDismiss');
+      var nameEl = document.getElementById('wipName');
+      var descEl = document.getElementById('wipDesc');
+      var techEl = document.getElementById('wipTech');
+      var titlebarEl = document.getElementById('wipTitlebar');
+
+      var projects = {
+      };
+
+      function openWip(key) {
+        var p = projects[key];
+        if (!p) return;
+        nameEl.textContent = p.name;
+        titlebarEl.textContent = p.titlebar;
+        descEl.textContent = p.desc;
+        techEl.innerHTML = p.tech;
+        overlay.classList.add('open');
+      }
+
+      function closeWip() {
+        overlay.classList.remove('open');
+      }
+
+      document.querySelectorAll('.wip-trigger').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          openWip(this.getAttribute('data-wip'));
+        });
+      });
+
+      closeBtn.addEventListener('click', closeWip);
+      dismissBtn.addEventListener('click', closeWip);
+      overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) closeWip();
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeWip();
+      });
+    })();
+  </script>
+  <script>
+    /* ---- Intro Cutscene ---- */
+    (function() {
+      var skip = document.getElementById('cutsceneSkip');
+      var overlay = document.getElementById('cutscene');
+      var textEl = document.getElementById('cutsceneText');
+      var typingEl = document.getElementById('cutsceneTyping');
+
+      var lines = [
+        "Hey there! Welcome to K7I.",
+        "We're a small studio that builds software for humans — not for investors.",
+        "Everything runs on YOUR computer. No cloud. No accounts. No tracking.",
+        "We've got Asteria, a life organizer. Noctis, coming soon. And Keta AI, our local AI engine.",
+        "Everything is open-source and free. Take a look around!"
+      ];
+
+      var lineIndex = 0;
+      var charIndex = 0;
+      var typing = false;
+      var speed = 28;
+      var lineDelay = 900;
+      var dismissed = false;
+
+      function typeChar() {
+        if (dismissed) return;
+        if (lineIndex >= lines.length) {
+          typingEl.style.display = 'none';
+          return;
+        }
+        typing = true;
+        typingEl.style.display = 'inline-flex';
+        var line = lines[lineIndex];
+        if (charIndex < line.length) {
+          textEl.textContent += line[charIndex];
+          charIndex++;
+          setTimeout(typeChar, speed);
+        } else {
+          typing = false;
+          typingEl.style.display = 'none';
+          lineIndex++;
+          charIndex = 0;
+          if (lineIndex < lines.length) {
+            setTimeout(function() {
+              if (!dismissed) {
+                textEl.textContent = '';
+                typingEl.style.display = 'inline-flex';
+                typeChar();
+              }
+            }, lineDelay);
+          }
+        }
+      }
+
+      function dismissCutscene() {
+        if (dismissed) return;
+        dismissed = true;
+        overlay.classList.add('hidden');
+        document.querySelector('.desktop').classList.add('cutscene-ready');
+        setTimeout(function() {
+          document.querySelectorAll('.reveal').forEach(function(el) {
+            el.classList.add('active');
+          });
+        }, 100);
+      }
+
+      skip.addEventListener('click', dismissCutscene);
+
+      // Auto-dismiss after all lines + buffer
+      var totalChars = lines.join('').length;
+      var totalTime = totalChars * speed + lines.length * lineDelay + 1200;
+      setTimeout(dismissCutscene, totalTime);
+
+      // Start typing
+      setTimeout(typeChar, 800);
+    })();
+  </script>
   <script>
     (function() {
       var start = Date.now();

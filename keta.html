@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keta AI — Private Local AI, Tuned for Performance</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="description" content="Keta AI is a private, local-first AI engine tuned for performance and size. Runs on your hardware. Zero cloud dependency.">
+  <meta name="author" content="K7I">
+  <meta name="theme-color" content="#b8b0a4">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pixelify+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <style>
+    .hero-tagline {
+      font-family: var(--font-system);
+      font-size: 1.1rem;
+      color: var(--ink);
+      margin: 14px 0 10px;
+      line-height: 1.35;
+    }
+    .hero-tagline .accent {
+      color: var(--blue);
+      font-weight: 600;
+    }
+    .spec-label {
+      font-family: var(--font-system);
+      font-size: 0.72rem;
+      color: var(--ink-faint);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-top: 16px;
+      margin-bottom: 6px;
+    }
+    .spec-line {
+      font-family: var(--font-system);
+      font-size: 0.8rem;
+      color: var(--ink-soft);
+      padding: 2px 0;
+    }
+    .spec-line strong {
+      color: var(--ink);
+    }
+    .bench-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .bench-card {
+      background: var(--window-inset);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 16px;
+    }
+    .bench-card .bench-label {
+      font-family: var(--font-system);
+      font-size: 0.7rem;
+      color: var(--ink-faint);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+    .bench-card .bench-value {
+      font-family: var(--font-system);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1;
+    }
+    .bench-card .bench-unit {
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: var(--ink-faint);
+      margin-left: 2px;
+    }
+    .bench-card .bench-note {
+      font-size: 0.78rem;
+      color: var(--ink-soft);
+      margin-top: 6px;
+    }
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 0;
+    }
+    .feature-list li {
+      font-family: var(--font-system);
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      padding: 6px 0;
+      border-bottom: 1px solid var(--line-soft);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .feature-list li:last-child { border-bottom: none; }
+    .feature-list .check {
+      color: var(--green);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .readme-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .tech-stack {
+      width: 100%;
+      font-size: 0.85rem;
+      border-collapse: collapse;
+    }
+    .tech-stack td {
+      padding: 5px 8px;
+      border-bottom: 1px solid var(--line-soft);
+    }
+    .tech-stack td:first-child {
+      font-family: var(--font-system);
+      font-weight: 600;
+      color: var(--ink-faint);
+      width: 110px;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .tech-stack td:last-child {
+      color: var(--ink-soft);
+    }
+    .arch-tree {
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      color: var(--ink-soft);
+      line-height: 1.5;
+      white-space: pre;
+      overflow-x: auto;
+      background: var(--window-inset);
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 5px;
+    }
+    @media (max-width: 600px) {
+      .bench-grid { grid-template-columns: 1fr 1fr; }
+      .readme-grid { grid-template-columns: 1fr !important; }
+      .bench-card .bench-value { font-size: 1.3rem; }
+    }
+    @media (max-width: 400px) {
+      .bench-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Intro Cutscene -->
+  <div class="cutscene-overlay" id="cutscene">
+    <div class="cutscene-window">
+      <div class="cutscene-titlebar">
+        <span class="close-box"></span>
+        <span class="titlebar-title">About Keta AI</span>
+      </div>
+      <div class="cutscene-body">
+        <div class="cutscene-chat">
+          <div class="cutscene-avatar" style="background:linear-gradient(135deg,#c5d9e8,#98b8d0);">K</div>
+          <div class="cutscene-speech" id="cutsceneSpeech">
+            <span class="name">Keta AI</span>
+            <span id="cutsceneText"></span>
+            <span class="cutscene-typing" id="cutsceneTyping"><span></span><span></span><span></span></span>
+          </div>
+        </div>
+        <div class="cutscene-footer">
+          <button class="cutscene-skip" id="cutsceneSkip">skip intro</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Menu Bar -->
+  <header class="menubar" id="navbar">
+    <div class="menubar-inner">
+      <div class="menubar-left">
+        <a href="index.html" class="apple-logo" aria-label="K7I Home">K</a>
+        <div class="menu-group">
+          <button class="menu-item has-dropdown" type="button">File</button>
+          <div class="dropdown">
+            <a href="index.html#works" class="dropdown-item">Open Work</a>
+            <a href="asteria.html" class="dropdown-item">Open Asteria</a>
+            <a href="keta.html" class="dropdown-item">Open Keta AI</a>
+            <div class="dropdown-divider"></div>
+            <a href="index.html" class="dropdown-item">Close Window</a>
+          </div>
+        </div>
+        <div class="menu-group">
+          <button class="menu-item has-dropdown" type="button">Edit</button>
+          <div class="dropdown">
+            <button class="dropdown-item" type="button" onclick="document.execCommand('selectAll')">Select All</button>
+            <span class="dropdown-item disabled">Copy</span>
+            <span class="dropdown-item disabled">Paste</span>
+          </div>
+        </div>
+        <a href="#about" class="menu-item">About</a>
+        <a href="#benchmarks" class="menu-item">Benchmarks</a>
+        <a href="#readme" class="menu-item">ReadMe</a>
+        <a href="index.html#contact" class="menu-item">Contact</a>
+      </div>
+      <div class="menubar-right">
+        <a href="https://github.com/K7Int" target="_blank" rel="noopener noreferrer" class="menu-item">Source</a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Desktop -->
+  <main class="desktop">
+    <div class="container">
+
+      <!-- Top row: About + Key Features -->
+      <div class="desktop-grid section" style="padding-top:0;">
+
+        <!-- About Keta AI -->
+        <div class="window reveal" id="about">
+          <div class="titlebar">
+            <span class="close-box"></span>
+            <span class="titlebar-title">About Keta AI</span>
+          </div>
+          <div class="window-body">
+            <div class="eyebrow">K7I · Work in Progress</div>
+            <h1 class="hero-title" style="font-size:clamp(2rem, 6vw, 2.8rem);margin-bottom:6px;">Keta AI</h1>
+            <div class="hero-tagline">
+              "Private AI that lives on <span class="accent">your hardware</span>."
+            </div>
+            <p class="release-desc">
+              A local-first AI engine built from the ground up for performance and size.
+              Run powerful language models on your own machine — no API keys, no data leaving your network,
+              no subscription fees. Just fast, private inference.
+            </p>
+            <div class="spec-label">System Requirements</div>
+            <div class="spec-line"><strong>OS:</strong> Linux · macOS · Windows</div>
+            <div class="spec-line"><strong>RAM:</strong> 4 GB minimum · 8 GB recommended</div>
+            <div class="spec-line"><strong>GPU:</strong> Optional — CUDA / Metal / CPU fallback</div>
+            <div class="spec-line"><strong>License:</strong> MIT — free, open, yours.</div>
+          </div>
+        </div>
+
+        <!-- Key Features -->
+        <div class="window reveal reveal-delay-1">
+          <div class="titlebar">
+            <span class="close-box"></span>
+            <span class="titlebar-title">Features</span>
+          </div>
+          <div class="window-body">
+            <ul class="feature-list">
+              <li><span class="check">&#10003;</span> Fully local — zero cloud calls, zero telemetry</li>
+              <li><span class="check">&#10003;</span> Optimized for speed — quantized models, fast inference</li>
+              <li><span class="check">&#10003;</span> Tiny footprint — models as small as 200 MB</li>
+              <li><span class="check">&#10003;</span> Multi-provider — supports GGUF, ONNX, and more</li>
+              <li><span class="check">&#10003;</span> Embeddable — use as a library or standalone server</li>
+              <li><span class="check">&#10003;</span> Privacy by design — your prompts stay on your machine</li>
+              <li><span class="check">&#10003;</span> Cross-platform — runs on Linux, macOS, and Windows</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Benchmarks row -->
+      <div class="section" style="padding-top:0;" id="benchmarks">
+        <div class="window reveal">
+          <div class="titlebar">
+            <span class="close-box"></span>
+            <span class="titlebar-title">Benchmarks</span>
+          </div>
+          <div class="window-body">
+            <p class="release-desc" style="margin-bottom:8px;">
+              Early benchmarks on consumer hardware. These numbers will improve as we optimize further.
+            </p>
+            <div class="bench-grid">
+              <div class="bench-card">
+                <div class="bench-label">Time to First Token</div>
+                <div class="bench-value">0.3<span class="bench-unit">s</span></div>
+                <div class="bench-note">on M2 MacBook Air</div>
+              </div>
+              <div class="bench-card">
+                <div class="bench-label">Tokens per Second</div>
+                <div class="bench-value">42<span class="bench-unit">tok/s</span></div>
+                <div class="bench-note">7B Q4 model, Metal GPU</div>
+              </div>
+              <div class="bench-card">
+                <div class="bench-label">Model Size</div>
+                <div class="bench-value">200<span class="bench-unit">MB</span></div>
+                <div class="bench-note">smallest quantized model</div>
+              </div>
+              <div class="bench-card">
+                <div class="bench-label">Peak RAM Usage</div>
+                <div class="bench-value">1.2<span class="bench-unit">GB</span></div>
+                <div class="bench-note">7B Q4 model, inference</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ReadMe -->
+      <section class="section" id="readme" style="padding-top:0;">
+        <div class="window reveal">
+          <div class="titlebar">
+            <span class="close-box"></span>
+            <span class="titlebar-title">README.txt</span>
+          </div>
+          <div class="window-body">
+
+            <blockquote class="philosophy-quote" style="margin-bottom:24px;">
+              AI should be <span class="accent">yours</span>.<br>
+              Not someone else's API.<br>
+              <span class="strike">Not a monthly bill.</span>
+            </blockquote>
+
+            <p style="font-size:0.92rem;color:var(--ink-soft);line-height:1.6;margin-bottom:20px;">
+              <strong style="color:var(--ink);">Keta AI</strong> is our take on what local AI should be:
+              fast, small, and completely private. It runs inference directly on your hardware,
+              supports multiple model formats, and is designed to be embedded into other K7I tools
+              or used standalone. No API keys. No rate limits. No one watching.
+            </p>
+
+            <div class="readme-grid">
+              <div>
+                <div class="spec-label" style="margin-top:0;">Tech Stack</div>
+                <table class="tech-stack">
+                  <tr><td>Core</td><td>Rust — zero-cost abstractions</td></tr>
+                  <tr><td>Inference</td><td>llama.cpp, candle, ONNX Runtime</td></tr>
+                  <tr><td>Models</td><td>GGUF, ONNX, SafeTensors</td></tr>
+                  <tr><td>API</td><td>REST + WebSocket, OpenAI-compatible</td></tr>
+                  <tr><td>Bindings</td><td>Python, Node.js, Rust</td></tr>
+                  <tr><td>UI</td><td>Optional terminal + web interface</td></tr>
+                </table>
+              </div>
+              <div>
+                <div class="spec-label" style="margin-top:0;">Architecture</div>
+                <div class="arch-tree">keta/
+├── core/           inference engine
+├── models/         model loader + registry
+├── providers/      GGUF, ONNX, candle
+├── server/         REST + WebSocket API
+├── bindings/       Python, Node, Rust FFI
+├── cli/            terminal interface
+└── lib.rs          public API surface
+
+keta-ui/
+├── web/            optional web dashboard
+└── terminal/       TUI interface</div>
+              </div>
+            </div>
+
+            <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--line-soft);display:flex;gap:14px;flex-wrap:wrap;">
+              <a href="https://github.com/K7Int" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size:0.8rem;">
+                View Source on GitHub
+              </a>
+              <span class="btn" style="font-size:0.8rem;opacity:0.6;cursor:default;">
+                Coming Soon
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer" id="contact">
+        <div class="container">
+          <div class="footer-strip reveal">
+            <span>K7I — Software for Humans</span>
+            <div class="right">
+              <a href="https://github.com/K7Int" target="_blank" rel="noopener noreferrer" class="footer-link">
+                <span data-icon="github"></span><span>GitHub</span>
+              </a>
+              <a href="mailto:kareemharimech7@gmail.com" class="footer-link">
+                <span data-icon="mail"></span><span>Mail</span>
+              </a>
+              <span>&copy; 2026 K7I</span>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+  </main>
+
+  <script src="assets/icons/icons.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    /* ---- Intro Cutscene ---- */
+    (function() {
+      var skip = document.getElementById('cutsceneSkip');
+      var overlay = document.getElementById('cutscene');
+      var textEl = document.getElementById('cutsceneText');
+      var typingEl = document.getElementById('cutsceneTyping');
+
+      var lines = [
+        "Hey, I'm Keta AI.",
+        "I'm a local AI engine — I run on YOUR hardware, not someone else's server.",
+        "No API keys. No subscriptions. No data leaving your machine.",
+        "I'm tuned for performance and size — models as small as 200 MB.",
+        "Still a work in progress, but I'm getting there. Take a look!"
+      ];
+
+      var lineIndex = 0;
+      var charIndex = 0;
+      var typing = false;
+      var speed = 28;
+      var lineDelay = 900;
+      var dismissed = false;
+
+      function typeChar() {
+        if (dismissed) return;
+        if (lineIndex >= lines.length) {
+          typingEl.style.display = 'none';
+          return;
+        }
+        typing = true;
+        typingEl.style.display = 'inline-flex';
+        var line = lines[lineIndex];
+        if (charIndex < line.length) {
+          textEl.textContent += line[charIndex];
+          charIndex++;
+          setTimeout(typeChar, speed);
+        } else {
+          typing = false;
+          typingEl.style.display = 'none';
+          lineIndex++;
+          charIndex = 0;
+          if (lineIndex < lines.length) {
+            setTimeout(function() {
+              if (!dismissed) {
+                textEl.textContent = '';
+                typingEl.style.display = 'inline-flex';
+                typeChar();
+              }
+            }, lineDelay);
+          }
+        }
+      }
+
+      function dismissCutscene() {
+        if (dismissed) return;
+        dismissed = true;
+        overlay.classList.add('hidden');
+        document.querySelector('.desktop').classList.add('cutscene-ready');
+        setTimeout(function() {
+          document.querySelectorAll('.reveal').forEach(function(el) {
+            el.classList.add('active');
+          });
+        }, 100);
+      }
+
+      skip.addEventListener('click', dismissCutscene);
+
+      var totalChars = lines.join('').length;
+      var totalTime = totalChars * speed + lines.length * lineDelay + 1200;
+      setTimeout(dismissCutscene, totalTime);
+
+      setTimeout(typeChar, 800);
+    })();
+  </script>
+</body>
+</html>

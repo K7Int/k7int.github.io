@@ -1,36 +1,53 @@
 /* ==========================================================================
    Design Tokens — K7I · System 7
-   Classic Macintosh OS: beige platinum, warm grays, one system-blue accent.
+   Classic Macintosh OS: warm platinum, refined grays, system-blue accent.
    ========================================================================== */
 
 :root {
   /* Desktop */
-  --desktop:      #b8b0a4;
-  --desktop-pattern: #a8a094;
+  --desktop:      #b5ad9f;
+  --desktop-pattern: #aca496;
 
-  /* Platinum chrome */
-  --chrome-top:   #ebe6da;
-  --chrome-mid:   #d6d0c2;
-  --chrome-bot:   #c4beb0;
+  /* Platinum chrome — refined gradient stops */
+  --chrome-top:   #ede8dc;
+  --chrome-mid:   #dbd5c7;
+  --chrome-bot:   #c8c1b3;
   --chrome-border:#8a8278;
+  --chrome-border-light: #a09888;
 
   /* Window surfaces */
-  --window-bg:    #faf8f3;
-  --window-inset: #f0ece2;
+  --window-bg:    #faf8f4;
+  --window-inset: #f0ece3;
+  --window-shadow: rgba(0, 0, 0, 0.12);
 
   /* Ink */
   --ink:          #1a1a1a;
   --ink-soft:     #4a4540;
   --ink-faint:    #7a746c;
+  --ink-wash:     #9a948c;
 
   /* System accents */
   --blue:         #2b5df2;
-  --blue-soft:    rgba(43, 93, 242, 0.12);
+  --blue-hover:   #1a4ad0;
+  --blue-soft:    rgba(43, 93, 242, 0.10);
+  --blue-glow:    rgba(43, 93, 242, 0.18);
   --red-close:    #e64e4e;
+  --green:        #2d9d2d;
+  --green-soft:   rgba(45, 157, 45, 0.12);
 
   /* Lines */
   --line:         #a8a190;
-  --line-soft:    rgba(26, 26, 26, 0.10);
+  --line-soft:    rgba(26, 26, 26, 0.08);
+  --line-strong:  rgba(26, 26, 26, 0.16);
+
+  /* Shadows */
+  --shadow-sm:    0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md:    0 2px 4px rgba(0,0,0,0.08), 0 4px 8px rgba(0,0,0,0.04);
+  --shadow-lg:    0 4px 8px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.06);
+  --shadow-window: 1px 1px 0 rgba(0,0,0,0.05),
+                   2px 2px 0 rgba(0,0,0,0.05),
+                   4px 4px 0 rgba(0,0,0,0.07),
+                   8px 8px 16px rgba(0,0,0,0.08);
 
   /* Type */
   --font-system:  "Pixelify Sans", "ChicagoFLF", "Geneva", sans-serif;
@@ -38,8 +55,10 @@
 
   /* Motion */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   --t-fast:   0.12s var(--ease-out);
   --t-normal: 0.25s var(--ease-out);
+  --t-slow:   0.4s var(--ease-out);
 
   /* Layout */
   --container-max: 1100px;

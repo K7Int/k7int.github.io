@@ -1,14 +1,284 @@
 /* ==========================================================================
-   Animations — System 7
+   Animations — System 7 · Polished
    ========================================================================== */
 
+/* ---- Intro Cutscene ---- */
+.cutscene-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: var(--desktop);
+  background-image:
+    radial-gradient(circle at 50% 50%, var(--desktop) 0 40%, transparent 40%),
+    radial-gradient(circle at 50% 50%, var(--desktop-pattern) 0 40%, transparent 40%);
+  background-size: 4px 4px, 4px 4px;
+  background-position: 0 0, 2px 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+.cutscene-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.cutscene-window {
+  width: 420px;
+  max-width: 92vw;
+  background: var(--window-bg);
+  border: 1px solid var(--chrome-border);
+  border-radius: 8px;
+  box-shadow: var(--shadow-window);
+  overflow: hidden;
+  transform: scale(0.92);
+  opacity: 0;
+  animation: cutsceneEnter 0.4s 0.2s var(--ease-out) forwards;
+}
+
+@keyframes cutsceneEnter {
+  to { transform: scale(1); opacity: 1; }
+}
+
+.cutscene-titlebar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 32px;
+  padding: 0 10px;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      var(--chrome-top) 0px,
+      var(--chrome-top) 1px,
+      var(--chrome-mid) 1px,
+      var(--chrome-mid) 2px
+    );
+  background-color: var(--chrome-top);
+  border-bottom: 1px solid var(--chrome-border);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.4) inset;
+}
+.cutscene-titlebar .titlebar-title {
+  font-family: var(--font-system);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ink);
+  text-align: center;
+  flex: 1;
+}
+
+.cutscene-body {
+  padding: 28px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.cutscene-chat {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.cutscene-avatar {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #c5d9e8 0%, #a8c4da 100%);
+  border: 1.5px solid var(--chrome-border);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-system);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--ink);
+  position: relative;
+  overflow: hidden;
+}
+.cutscene-avatar::after {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  width: 8px;
+  height: 8px;
+  background: var(--green);
+  border: 2px solid var(--window-bg);
+  border-radius: 50%;
+}
+
+.cutscene-speech {
+  background: var(--window-inset);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 12px 16px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  flex: 1;
+  min-height: 48px;
+  position: relative;
+}
+.cutscene-speech::before {
+  content: "";
+  position: absolute;
+  left: -7px;
+  top: 14px;
+  width: 0;
+  height: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-right: 7px solid var(--line);
+}
+.cutscene-speech::after {
+  content: "";
+  position: absolute;
+  left: -5px;
+  top: 14px;
+  width: 0;
+  height: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-right: 7px solid var(--window-inset);
+}
+
+.cutscene-speech .name {
+  font-family: var(--font-system);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.cutscene-typing {
+  display: inline-flex;
+  gap: 3px;
+  padding: 4px 0;
+}
+.cutscene-typing span {
+  width: 5px;
+  height: 5px;
+  background: var(--ink-faint);
+  border-radius: 50%;
+  animation: typingDot 1.2s infinite;
+}
+.cutscene-typing span:nth-child(2) { animation-delay: 0.15s; }
+.cutscene-typing span:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes typingDot {
+  0%, 60%, 100% { opacity: 0.25; transform: scale(0.85); }
+  30% { opacity: 1; transform: scale(1); }
+}
+
+.cutscene-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 6px;
+}
+
+.cutscene-skip {
+  font-family: var(--font-system);
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 3px;
+  transition: color var(--t-fast), background var(--t-fast);
+}
+.cutscene-skip:hover {
+  color: var(--ink);
+  background: var(--blue-soft);
+}
+
+.cutscene-enter-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 22px;
+  font-family: var(--font-system);
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: linear-gradient(180deg, #3a6cf5 0%, var(--blue) 100%);
+  border: 1.5px solid var(--blue);
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.25) inset, 0 1px 3px rgba(43,93,242,0.3);
+  transition: background var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
+  opacity: 0;
+  transform: translateY(6px);
+}
+.cutscene-enter-btn.visible {
+  animation: cutsceneBtnIn 0.35s var(--ease-out) forwards;
+}
+@keyframes cutsceneBtnIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+.cutscene-enter-btn:hover {
+  background: linear-gradient(180deg, #4a7cff 0%, var(--blue-hover) 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.25) inset, 0 2px 8px rgba(43,93,242,0.35);
+}
+.cutscene-enter-btn:active {
+  transform: translateY(0);
+}
+
+/* After cutscene: stagger main content */
+.desktop.cutscene-ready .reveal {
+  opacity: 0;
+  transform: translateY(20px) scale(0.985);
+}
+.desktop.cutscene-ready .reveal.active {
+  animation: postCutsceneIn 0.5s var(--ease-out) forwards;
+}
+@keyframes postCutsceneIn {
+  from { opacity: 0; transform: translateY(16px) scale(0.985); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Scroll reveal — smooth entrance */
 .reveal {
   opacity: 0;
-  transform: translateY(18px) scale(0.98);
-  transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+  transform: translateY(20px) scale(0.985);
+  transition:
+    opacity 0.6s var(--ease-out),
+    transform 0.6s var(--ease-out);
 }
-.reveal.active { opacity: 1; transform: translateY(0) scale(1); }
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
 
-.reveal-delay-1 { transition-delay: 0.08s; }
-.reveal-delay-2 { transition-delay: 0.16s; }
-.reveal-delay-3 { transition-delay: 0.24s; }
+/* Staggered delays */
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* Subtle hover lift for interactive elements */
+@keyframes subtleBounce {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-1px); }
+  100% { transform: translateY(0); }
+}
+
+/* Pulse for status indicators */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* Titlebar stripe shimmer on hover */
+.window:hover .titlebar {
+  background-position: 0 0;
+}

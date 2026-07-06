@@ -16,7 +16,10 @@ Set in *Pixelify Sans* and *Inter*.
 
 ```
 /
-├── index.html
+├── index.html            # Desktop home — About, Work, Philosophy
+├── asteria.html          # K7I Asteria product page
+├── noctis.html           # K7I Noctis product page
+├── keta.html             # K7I Keta AI product page (WIP)
 ├── css/
 │   ├── reset.css
 │   ├── variables.css
@@ -24,18 +27,18 @@ Set in *Pixelify Sans* and *Inter*.
 │   ├── main.css
 │   └── components.css
 ├── js/
-│   └── main.js          # menu bar, scroll reveal, mobile menu
+│   └── main.js           # menu bar, scroll reveal, mobile menu
 ├── assets/
 │   └── icons/
-│       └── icons.js     # zero-dep SVG icon registry
+│       └── icons.js      # zero-dep SVG icon registry
 └── README.md
 ```
 
-## Status
+## Projects
 
-Everything is under active development.
-
-- **K7I Asteria** — a folder in the Work window, status WIP. Details not yet shared.
+- **K7I Asteria** — Local-first desktop app that turns your life into a filesystem. Books, movies, trips, photos — everything is a memory file.
+- **K7I Noctis** — Local-first desktop app that preserves everything that happens after sunset. Dreams, walks, music, stars — a museum of the night.
+- **K7I Keta AI** — Local AI engine. Status: WIP.
 
 ## Contact
 

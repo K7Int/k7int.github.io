@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Components — System 7
+   Components — System 7 · Polished
    Window chrome, buttons, file icons, scroll boxes.
    ========================================================================== */
 
@@ -11,32 +11,57 @@
   background: var(--window-bg);
   border: 1px solid var(--chrome-border);
   border-radius: 8px;
-  box-shadow:
-    1px 1px 0 rgba(0,0,0,0.06),
-    2px 2px 0 rgba(0,0,0,0.06),
-    4px 4px 0 rgba(0,0,0,0.08),
-    0 0 0 1px rgba(255,255,255,0.35) inset;
+  box-shadow: var(--shadow-window);
   overflow: hidden;
+  transition: box-shadow 0.3s ease;
 }
 
+.window:hover {
+  box-shadow:
+    1px 1px 0 rgba(0,0,0,0.05),
+    2px 2px 0 rgba(0,0,0,0.05),
+    4px 4px 0 rgba(0,0,0,0.07),
+    8px 8px 20px rgba(0,0,0,0.10);
+}
+
+/* ---- Titlebar with stripes ---- */
 .titlebar {
   display: flex;
   align-items: center;
   gap: 10px;
   height: 32px;
   padding: 0 10px;
-  background: linear-gradient(180deg, var(--chrome-top) 0%, var(--chrome-mid) 55%, var(--chrome-bot) 100%);
+  background:
+    repeating-linear-gradient(
+      0deg,
+      var(--chrome-top) 0px,
+      var(--chrome-top) 1px,
+      var(--chrome-mid) 1px,
+      var(--chrome-mid) 2px
+    );
+  background-color: var(--chrome-top);
   border-bottom: 1px solid var(--chrome-border);
   box-shadow: 0 1px 0 rgba(255,255,255,0.4) inset;
+  position: relative;
 }
 
+/* ---- Close box ---- */
 .close-box {
   width: 14px; height: 14px;
   border: 1.5px solid var(--chrome-border);
-  border-radius: 2px;
-  background: var(--window-bg);
+  border-radius: 3px;
+  background: linear-gradient(180deg, var(--window-bg) 0%, var(--window-inset) 100%);
   position: relative;
   flex: 0 0 auto;
+  cursor: pointer;
+  transition: transform var(--t-fast);
+}
+.close-box:hover {
+  transform: scale(1.1);
+}
+.close-box:hover::before,
+.close-box:hover::after {
+  background: var(--ink);
 }
 .close-box::before, .close-box::after {
   content: "";
@@ -44,10 +69,12 @@
   top: 50%; left: 50%;
   width: 7px; height: 1.5px;
   background: var(--ink-faint);
+  transition: background var(--t-fast);
 }
 .close-box::before { transform: translate(-50%, -50%) rotate(45deg); }
 .close-box::after  { transform: translate(-50%, -50%) rotate(-45deg); }
 
+/* ---- Titlebar title ---- */
 .titlebar-title {
   flex: 1;
   text-align: center;
@@ -57,54 +84,99 @@
   color: var(--ink);
   letter-spacing: 0.02em;
   padding-right: 24px;
+  user-select: none;
 }
 
+/* ---- Window body ---- */
 .window-body {
   padding: 22px 24px 24px;
 }
 .window-body.inset {
   background: var(--window-inset);
   border-top: 1px solid var(--line);
-  box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.6) inset,
+    0 -1px 0 rgba(0,0,0,0.03) inset;
 }
 
-/* ---- System buttons ---- */
+/* ---- Resize handle (decorative) ---- */
+.window-body.inset::after {
+  content: "";
+  display: block;
+  width: 12px; height: 12px;
+  margin: 12px 0 0 auto;
+  background:
+    linear-gradient(135deg, transparent 33%, var(--chrome-border) 33%, var(--chrome-border) 40%, transparent 40%, transparent 53%, var(--chrome-border) 53%, var(--chrome-border) 60%, transparent 60%, transparent 73%, var(--chrome-border) 73%, var(--chrome-border) 80%, transparent 80%);
+  opacity: 0.4;
+}
+
+/* =====================================================================
+   System buttons — refined
+   ===================================================================== */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 6px 16px;
+  padding: 7px 18px;
   font-family: var(--font-system);
   font-size: 0.82rem;
   font-weight: 600;
-  background: var(--window-bg);
+  background: linear-gradient(180deg, var(--window-bg) 0%, var(--window-inset) 100%);
   border: 1.5px solid var(--chrome-border);
   border-radius: 5px;
-  box-shadow: 0 1px 0 rgba(255,255,255,0.5) inset;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.5) inset,
+    0 1px 2px rgba(0,0,0,0.06);
   color: var(--ink);
-  transition: background var(--t-fast), transform var(--t-fast);
+  transition: background var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
   white-space: nowrap;
+  user-select: none;
 }
-.btn:hover { background: var(--chrome-top); transform: translateY(-1px); }
-.btn:active { background: var(--chrome-mid); transform: translateY(0); }
+.btn:hover {
+  background: linear-gradient(180deg, #fff 0%, var(--chrome-top) 100%);
+  transform: translateY(-1px);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.5) inset,
+    0 2px 6px rgba(0,0,0,0.10);
+}
+.btn:active {
+  background: linear-gradient(180deg, var(--chrome-mid) 0%, var(--chrome-bot) 100%);
+  transform: translateY(0);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.3) inset,
+    0 1px 2px rgba(0,0,0,0.06);
+}
 
 .btn-primary {
-  background: var(--blue);
+  background: linear-gradient(180deg, #3a6cf5 0%, var(--blue) 100%);
   border-color: var(--blue);
   color: #fff;
-  box-shadow: 0 1px 0 rgba(255,255,255,0.25) inset;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.25) inset,
+    0 1px 3px rgba(43, 93, 242, 0.3);
 }
-.btn-primary:hover { background: #1a4ad0; border-color: #1a4ad0; }
+.btn-primary:hover {
+  background: linear-gradient(180deg, #4a7cff 0%, var(--blue-hover) 100%);
+  border-color: var(--blue-hover);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.25) inset,
+    0 2px 8px rgba(43, 93, 242, 0.35);
+}
+.btn-primary:active {
+  background: linear-gradient(180deg, var(--blue-hover) 0%, #1640b0 100%);
+}
 
-.btn-sm { padding: 4px 10px; font-size: 0.74rem; }
+.btn-sm { padding: 5px 12px; font-size: 0.74rem; }
 .btn .ico svg { width: 12px; height: 12px; stroke-width: 1.6; }
 
-/* ---- File / folder icon grid ---- */
+/* =====================================================================
+   File / folder icon grid — refined
+   ===================================================================== */
 .file-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 22px;
+  gap: 20px;
   padding: 8px 4px;
 }
 
@@ -117,34 +189,39 @@
   border: 1px solid transparent;
   border-radius: 6px;
   text-align: center;
-  transition: background var(--t-fast), border-color var(--t-fast);
+  transition: background var(--t-fast), border-color var(--t-fast), transform var(--t-fast);
 }
 .file-icon:hover {
   background: var(--blue-soft);
   border-color: var(--blue);
+  transform: translateY(-2px);
 }
 
 .file-icon .icon {
   width: 48px; height: 40px;
   display: flex; align-items: center; justify-content: center;
-  background: #f8e8a0;
+  background: linear-gradient(180deg, #fce89a 0%, #f0d87a 100%);
   border: 1.5px solid var(--chrome-border);
   border-radius: 3px 8px 3px 3px;
   box-shadow: 1px 1px 0 rgba(0,0,0,0.08);
   position: relative;
+  transition: transform var(--t-fast);
+}
+.file-icon:hover .icon {
+  transform: scale(1.05);
 }
 .file-icon .icon::before {
   content: "";
   position: absolute;
   top: -6px; left: -1px;
   width: 18px; height: 8px;
-  background: #f8e8a0;
+  background: linear-gradient(180deg, #fce89a 0%, #f0d87a 100%);
   border: 1.5px solid var(--chrome-border);
   border-bottom: none;
   border-radius: 3px 5px 0 0;
 }
 .file-icon .icon.app {
-  background: #c5d9e8;
+  background: linear-gradient(180deg, #d0e4f4 0%, #b8d4e8 100%);
   border-radius: 6px;
 }
 .file-icon .icon.app::before { display: none; }
@@ -159,7 +236,9 @@
 }
 .file-icon.empty .label { color: var(--ink-faint); }
 
-/* ---- Alert / notice box ---- */
+/* =====================================================================
+   Alert / notice box
+   ===================================================================== */
 .alert {
   display: flex;
   align-items: flex-start;
@@ -168,7 +247,7 @@
   background: var(--window-bg);
   border: 1.5px solid var(--chrome-border);
   border-radius: 6px;
-  box-shadow: 2px 2px 0 rgba(0,0,0,0.06);
+  box-shadow: var(--shadow-sm);
 }
 .alert-icon {
   width: 32px; height: 32px;
@@ -184,7 +263,7 @@
 .alert-body b { color: var(--ink); }
 
 /* =====================================================================
-   OS Dropdown menus
+   OS Dropdown menus — refined
    ===================================================================== */
 .menu-group { position: relative; }
 
@@ -196,8 +275,8 @@
   min-width: 170px;
   background: var(--window-bg);
   border: 1px solid var(--chrome-border);
-  border-radius: 4px;
-  box-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+  border-radius: 5px;
+  box-shadow: var(--shadow-lg);
   z-index: 1001;
   overflow: hidden;
 }
@@ -241,6 +320,7 @@
     left: 0; right: 0;
     background: linear-gradient(180deg, var(--chrome-top) 0%, var(--chrome-mid) 100%);
     border-bottom: 1px solid var(--chrome-border);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
     flex-direction: column;
     align-items: flex-start;
     padding: 10px 16px 14px;
@@ -256,4 +336,130 @@
     border: 1px solid var(--line);
     margin: 4px 0;
   }
+}
+
+/* =====================================================================
+   WIP Modal — System 7 alert dialog
+   ===================================================================== */
+.wip-trigger {
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  text-align: center;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 12px 8px;
+}
+
+.wip-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: rgba(0,0,0,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+.wip-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.wip-window {
+  width: 440px;
+  max-width: 92vw;
+  background: var(--window-bg);
+  border: 1px solid var(--chrome-border);
+  border-radius: 8px;
+  box-shadow: var(--shadow-window);
+  overflow: hidden;
+  transform: scale(0.95);
+  transition: transform 0.2s var(--ease-out);
+}
+.wip-overlay.open .wip-window {
+  transform: scale(1);
+}
+
+.wip-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.wip-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 10px;
+  font-family: var(--font-system);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--blue);
+  border-radius: 4px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.wip-name {
+  font-family: var(--font-system);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.1;
+}
+
+.wip-desc {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.wip-tech {
+  background: var(--window-inset);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 12px 14px;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+  margin-bottom: 16px;
+  white-space: pre-line;
+}
+.wip-tech strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.wip-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 1px solid var(--line-soft);
+}
+
+.wip-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-system);
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+}
+
+.wip-dot {
+  width: 7px;
+  height: 7px;
+  background: #e8a020;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
 }
